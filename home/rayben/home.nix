@@ -20,7 +20,6 @@
           bbenoist.nix
           asvetliakov.vscode-neovim
           esbenp.prettier-vscode
-          k
         ];
 
         userSettings = {
@@ -33,7 +32,7 @@
           "editor.fontFamily" = "'LucidaProgrammer Nerd Font', 'Droid Sans Mono', 'monospace'";
           "git.enableSmartCommit" = true;
         };
-    }
+    };
   };
 
   programs.git = {
