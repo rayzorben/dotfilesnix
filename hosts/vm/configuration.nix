@@ -21,7 +21,31 @@
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXROOT";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = [ "subvol=@" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-label/NIXROOT";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/var/log" = {
+    device = "/dev/disk/by-label/NIXROOT";
+    fsType = "btrfs";
+    options = [ "subvol=@log" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/var/cache" = {
+    device = "/dev/disk/by-label/NIXROOT";
+    fsType = "btrfs";
+    options = [ "subvol=@cache" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/snapshots" = {
+    device = "/dev/disk/by-label/NIXROOT";
+    fsType = "btrfs";
+    options = [ "subvol=@snapshots" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/boot" = {
