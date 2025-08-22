@@ -42,9 +42,7 @@ echo ">>> Cloning repo"
 nix-shell -p git --run "git clone $REPO $MNT/etc/nixos"
 
 echo ">>> Generating hardware config"
-nixos-generate-config --root $MNT
-cp $MNT/etc/nixos/hardware-configuration.nix \
-   $MNT/etc/nixos/hosts/$HOST/hardware-configuration-generated.nix
+nixos-generate-config --root $MNT/hosts/$HOST
 
 echo ">>> Installing NixOS with flake"
 nixos-install --flake $MNT/etc/nixos#$HOST
