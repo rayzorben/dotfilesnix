@@ -9,14 +9,14 @@ MNT="/mnt"
 echo ">>> Partitioning $DISK"
 sgdisk --zap-all $DISK
 sgdisk -n1:1M:+1G -t1:ef00 -c1:"EFI" $DISK
-sgdisk -n2:0:0   -t2:8300 -c2:"cryptroot" $DISK
+sgdisk -n2:0:0   -t2:8300 -c2:"nixos-root" $DISK   # <-- partlabel matches hosts.nix
 
 echo ">>> Setting up LUKS2"
 cryptsetup luksFormat --type luks2 ${DISK}2
 cryptsetup open ${DISK}2 cryptroot
 
 echo ">>> Creating btrfs filesystem with subvolumes"
-mkfs.btrfs -L NIXROOT /dev/mapper/cryptroot
+mkfs.btrfs -L NIXROOT /dev/mapper/cryptroot   # <-- fsLabel matches hosts.nix
 mount /dev/mapper/cryptroot $MNT
 btrfs subvolume create $MNT/@
 btrfs subvolume create $MNT/@home
@@ -44,7 +44,8 @@ nix-shell -p git --run "
 
 echo ">>> Generating hardware config"
 nixos-generate-config --root $MNT
-cp $MNT/etc/nixos/hardware-configuration.nix $MNT/etc/nixos/hosts/$HOST/hardware-configuration-generated.nix
+cp $MNT/etc/nixos/hardware-configuration.nix \
+   $MNT/etc/nixos/hosts/$HOST/hardware-configuration-generated.nix
 
 echo ">>> Installing NixOS with flake"
 nixos-install --flake $MNT/etc/nixos#$HOST
