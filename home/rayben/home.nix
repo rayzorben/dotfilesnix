@@ -4,6 +4,7 @@
   home.username = "rayben";
   home.homeDirectory = "/home/rayben";
 
+  home.stateVersion = "25.05";
   programs.home-manager.enable = true;
 
   programs.neovim = {
@@ -14,21 +15,25 @@
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      asvetliakov.vscode-neovim
-      esbenp.prettier-vscode
-    ];
-    userSettings = {
-      "[nix]"."editor.tabSize" = 2;
-      "editor.formatOnPaste" = true;
-      "security.workspace.trust.enabled" = false;
-      "extensions.experimental.affinity" = {
-        "asvetliakov.vscode-neovim" = 1;
-      };
-      "editor.fontFamily" = "'LucidaProgrammer Nerd Font', 'Droid Sans Mono', 'monospace'";
-      "git.enableSmartCommit" = true;
-    };
+    profiles.default = {
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          asvetliakov.vscode-neovim
+          esbenp.prettier-vscode
+          k
+        ];
+
+        userSettings = {
+          "[nix]"."editor.tabSize" = 2;
+          "editor.formatOnPaste" = true;
+          "security.workspace.trust.enabled" = false;
+          "extensions.experimental.affinity" = {
+            "asvetliakov.vscode-neovim" = 1;
+          };
+          "editor.fontFamily" = "'LucidaProgrammer Nerd Font', 'Droid Sans Mono', 'monospace'";
+          "git.enableSmartCommit" = true;
+        };
+    }
   };
 
   programs.git = {

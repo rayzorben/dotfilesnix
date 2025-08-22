@@ -10,7 +10,6 @@
     remmina
     freerdp3
     nodejs
-    nerdfonts
     corefonts
     vistafonts
     open-sans
@@ -19,10 +18,16 @@
     anyrun
     dunst
     eww
-    nu
+    nushell
     starship
   ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
+
+  programs.fish.enable = true;
   programs.steam.enable = true;
   programs.virt-manager.enable = true;
 }

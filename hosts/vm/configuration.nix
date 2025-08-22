@@ -69,5 +69,7 @@
   services.xserver.videoDrivers = [ "xe" ];
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = [ pkgs.intel-media-driver ];
+
+  system.stateVersion = "25.05";
 }
 

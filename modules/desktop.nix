@@ -1,9 +1,15 @@
 { pkgs, ... }:
 
 {
+  # Display manager (login)
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "sddm-chili"; # Example
-  services.xserver.windowManager.niri.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true; # allow Wayland sessions
+  services.displayManager.sddm.theme = "sddm-chili";
+
+  # Wayland compositor - Niri
+  environment.systemPackages = with pkgs; [
+    niri
+  ];
 }
 
