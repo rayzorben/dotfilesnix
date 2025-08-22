@@ -2,10 +2,11 @@
 
 {
   imports = [
+    ../../modules/boot.nix
+    ../../modules/users.nix
+    ../../modules/services.nix
     ../../modules/desktop.nix
     ../../modules/programs.nix
-    ../../modules/services.nix
-    ../../modules/users.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
