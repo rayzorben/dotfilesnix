@@ -8,23 +8,23 @@
     ../../modules/users.nix
   ];
 
-  # EFI Boot + LUKS + BTRFS
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."root" = {
-    device = "/dev/disk/by-uuid/<UUID>"; # Replace after install
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-partlabel/nixos-root"; 
     preLVM = true;
+    crypttabExtraOpts = [ "luks2" ];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/<UUID>";
+    device = "/dev/disk/by-label/NIXROOT";
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/<UUID>";
+    device = "/dev/disk/by-label/EFI";
     fsType = "vfat";
   };
 
