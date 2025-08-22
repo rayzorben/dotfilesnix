@@ -9,7 +9,8 @@ MNT="/mnt"
 echo ">>> Partitioning $DISK"
 sgdisk --zap-all $DISK
 sgdisk -n1:1M:+1G -t1:ef00 -c1:"EFI" $DISK
-sgdisk -n2:0:0   -t2:8300 -c2:"nixos-root" $DISK   # <-- partlabel matches hosts.nix
+sgdisk -n2:0:0 -t2:8300 -c2:"nixos-root" $DISK
+
 
 echo ">>> Setting up LUKS2"
 cryptsetup luksFormat --type luks2 ${DISK}2
@@ -38,9 +39,7 @@ mkfs.vfat -n EFI ${DISK}1
 mount ${DISK}1 $MNT/boot
 
 echo ">>> Cloning repo"
-nix-shell -p git --run "
-  git clone $REPO $MNT/etc/nixos
-"
+nix-shell -p git --run "git clone $REPO $MNT/etc/nixos"
 
 echo ">>> Generating hardware config"
 nixos-generate-config --root $MNT
