@@ -45,6 +45,10 @@ echo ">>> Generating hardware config"
 nixos-generate-config --root $MNT
 cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/$HOST/hardware-configuration.nix
 
+pushd /mnt/etc/nixos
+git add hosts/$HOST/hardware-configuration.nix
+popd
+
 echo ">>> Installing NixOS with flake"
 nixos-install --flake $MNT/etc/nixos#$HOST
 

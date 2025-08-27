@@ -30,5 +30,10 @@
   programs.fish.enable = true;
   programs.steam.enable = true;
   programs.virt-manager.enable = true;
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 }
 
