@@ -24,6 +24,16 @@
   nixpkgs.config.allowUnfree = true;
 
   hardware.graphics.enable = true;
+  
+  # QEMU-specific graphics configuration
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  
+  # Enable virtual console for debugging
+  boot.kernelParams = [ "console=ttyS0" ];
 
   system.stateVersion = "25.05";
 }

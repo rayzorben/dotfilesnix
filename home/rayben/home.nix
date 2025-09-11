@@ -11,6 +11,9 @@
     enable = true;
     defaultEditor = true;
   };
+  
+  fonts.fontconfig.enable = true;
+  home.file.".local/share/fonts/LucidaProgrammerNerdFontMono-Regular.ttf".source = ../../.local/share/fonts/LucidaProgrammerNerdFontMono-Regular.ttf;
 
   programs.vscode = {
     enable = true;

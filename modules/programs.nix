@@ -13,13 +13,13 @@
     corefonts
     vistafonts
     open-sans
-    # Extras
     ghostty
     anyrun
     dunst
     eww
     nushell
     starship
+    alacritty
   ];
 
   fonts.packages = with pkgs; [

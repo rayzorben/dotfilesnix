@@ -20,7 +20,9 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.rayben = import ./home/rayben/home.nix;
+            home-manager.users.rayben = imports [
+                ./home/rayben/home.nix
+            ];
           }
         ];
       };

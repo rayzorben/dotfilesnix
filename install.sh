@@ -38,6 +38,9 @@ echo ">>> Formatting EFI partition"
 mkfs.vfat -n EFI ${DISK}1
 mount ${DISK}1 $MNT/boot
 
+mkdir -p /tmp/ventoy
+mount /dev/disk/by-label/Ventoy /tmp/ventoy
+
 echo ">>> Cloning repo"
 nix-shell -p git --run "git clone $REPO $MNT/etc/nixos"
 
